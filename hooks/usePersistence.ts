@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 function usePersistence(
   localStorageKey: string,
@@ -7,8 +7,13 @@ function usePersistence(
   const [value, setValue] = useState(
     localStorage.getItem(localStorageKey) ?? initValue
   );
+  const firstRender = useRef(false);
 
   useEffect(() => {
+    if (!firstRender.current) {
+      firstRender.current = true;
+      return;
+    }
     localStorage.setItem(localStorageKey, value);
   }, [value]);
 
@@ -16,21 +21,3 @@ function usePersistence(
 }
 
 export default usePersistence;
-
-
-//Session-11
-/*import { useState, useEffect } from "react";
-
-function usePersistence(localStorageKey: string, initValue: string) {
-  const [value, setValue] = useState(
-    localStorage.getItem(localStorageKey) ?? initValue
-  );
-
-  useEffect(() => {
-    localStorage.setItem(localStorageKey, value);
-  }, [value]);
-
-  return [value, setValue];
-}
-
-export default usePersistence;*/
