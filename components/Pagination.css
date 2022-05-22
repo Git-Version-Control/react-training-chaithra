@@ -1,0 +1,16 @@
+.pagination {
+    position:absolute;
+    left:0;
+    bottom:0;
+    right:0;
+    margin-bottom: -600px;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--indigo);
+    height:20px;
+    width:70vh;
+    margin-left: 10%;
+  }
